@@ -4,11 +4,11 @@ services:
         image: postgres
         container_name: postgres
         restart: always
-        # environment:
-        #     - POSTGRES_PORT=${POSTGRES_PORT}
-        #     - POSTGRES_DB=${POSTGRES_DB}
-        #     - POSTGRES_USER=${POSTGRES_USER}
-        #     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        environment:
+            - POSTGRES_PORT=${POSTGRES_PORT}
+            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
         ports:
             - "${POSTGRES_PORT}:5432"
         healthcheck:
@@ -30,6 +30,10 @@ services:
         container_name: poc
         environment: 
             - POC_PORT=${POC_PORT}
+            - POSTGRES_PORT=${POSTGRES_PORT}
+            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
         ports:
             - "${POC_PORT}:8080"
         restart: always

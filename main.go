@@ -1,18 +1,21 @@
 package main
 
 import (
+	"gorm_poc/connector"
+	"gorm_poc/router"
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	//"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-func main() {
-	r := mux.NewRouter()
+// var db *gorm.DB
 
-	r.HandleFunc("/health", func(w http.ResponseWriter, req *http.Request) {
-		w.WriteHeader(http.StatusOK)
-	})
-	log.Println("Starting")
-	log.Fatal(http.ListenAndServe(":8080", r))
+func main() {
+	dbConfig := connector.ReadInDbConfig()
+	connString := dbConfig.GetConnectionString()
+	log.Println(connString)
+	// db, err := gorm.Open("postgres", dbConfig.GetConnectionString())
+	log.Fatal(http.ListenAndServe(":8080", router.InitRouter()))
 }

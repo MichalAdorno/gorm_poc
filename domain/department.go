@@ -13,6 +13,7 @@ type Department struct {
 	CreatedAt       time.Time      `gorm:"column:createdAt"`
 	UpdatedAt       time.Time      `gorm:"column:updatedAt"`
 	HrDocumentation postgres.Jsonb `gorm:"column:hrDocumentation"`
+	Teams           []Team         `gorm:"foreignkey:DepartmentId"`
 }
 
 func (Department) TableName() string {

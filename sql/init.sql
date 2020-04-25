@@ -46,7 +46,7 @@ CREATE TABLE "Employees"(
   id INTEGER NOT NULL,
   name VARCHAR(255) NOT NULL,
   "RoleId" INTEGER NOT NULL,
-  "ManagerId" INTEGER,
+  -- "ManagerId" INTEGER,
   "CarId" INTEGER,
   "TeamId" INTEGER,
   "hrDocumentation" jsonb,
@@ -158,12 +158,12 @@ ALTER TABLE ONLY "Employees"
   REFERENCES "Roles"(id)
   ON UPDATE CASCADE
   ON DELETE CASCADE;
-ALTER TABLE ONLY "Employees" 
-  ADD CONSTRAINT "Employees_ManagerId_fk"
-  FOREIGN KEY("ManagerId")
-  REFERENCES "Employees"(id)
-  ON UPDATE CASCADE
-  ON DELETE CASCADE;
+-- ALTER TABLE ONLY "Employees" 
+--   ADD CONSTRAINT "Employees_ManagerId_fk"
+--   FOREIGN KEY("ManagerId")
+--   REFERENCES "Employees"(id)
+--   ON UPDATE CASCADE
+--   ON DELETE CASCADE;
 ALTER TABLE ONLY "Employees" 
   ADD CONSTRAINT "Employees_CarId_fk"
   FOREIGN KEY("CarId")

@@ -1,4 +1,4 @@
-# Proof of Concept for Advanced Mapping and CRUD: GORM (Golang ORM) + PostgreSQL
+# Proof of Concept for Complex Mapping and CRUD: GORM (Golang ORM) + PostgreSQL
 
 ## Building
 * to build an executable within a tiny Go Docker image and run it with Docker Compose: 

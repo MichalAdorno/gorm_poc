@@ -1,5 +1,5 @@
-CREATE DATABASE poc_db;
-CREATE USER poc_user WITH ENCRYPTED PASSWORD 'poc_secret';
+-- CREATE DATABASE poc_db;
+-- CREATE USER poc_user WITH ENCRYPTED PASSWORD 'poc_secret';
 GRANT ALL PRIVILEGES ON DATABASE poc_db TO poc_user;
 
 \connect poc_db poc_user

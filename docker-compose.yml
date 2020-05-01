@@ -9,10 +9,11 @@ services:
             - POSTGRES_DB=${POSTGRES_DB}
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - DOCKER_POSTGRES_IP=${DOCKER_POSTGRES_IP}
         ports:
             - "${POSTGRES_PORT}:5432"
         healthcheck:
-            test: ["CMD-SHELL", "pg_isready -h postgres -p ${POSTGRES_PORT} -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+            test: ["CMD-SHELL", "pg_isready -h ${DOCKER_POSTGRES_IP} -p ${POSTGRES_PORT} -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
             interval: 10s
             timeout: 5s
             retries: 5
@@ -34,11 +35,13 @@ services:
             - POSTGRES_DB=${POSTGRES_DB}
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - DOCKER_POSTGRES_IP=${DOCKER_POSTGRES_IP}
+            - DOCKER_POC_IP=${DOCKER_POC_IP}
         ports:
             - "${POC_PORT}:8080"
         restart: always
         healthcheck:
-            test: ["CMD-SHELL", "curl -f poc:${POC_PORT}/health || exit 1"]
+            test: ["CMD-SHELL", "curl -f ${DOCKER_POC_IP}:${POC_PORT}/health || exit 1"]
             interval: 10s
             timeout: 5s
             retries: 5

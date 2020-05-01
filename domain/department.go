@@ -7,12 +7,12 @@ import (
 )
 
 type Department struct {
-	ID              uint           `gorm:"primary_key"`
-	Name            string         `gorm:"size:255"`
-	ManagerId       uint           `gorm:"column:ManagerId"`
+	ID   uint   `gorm:"primary_key"`
+	Name string `gorm:"size:255"`
+	// ManagerId       uint           `gorm:"column:ManagerId"`
 	CreatedAt       time.Time      `gorm:"column:createdAt"`
 	UpdatedAt       time.Time      `gorm:"column:updatedAt"`
-	HrDocumentation postgres.Jsonb `gorm:"column:hrDocumentation"`
+	HrDocumentation postgres.Jsonb `gorm:"column:hrdocumentation"`
 	Teams           []Team         `gorm:"foreignkey:DepartmentId"`
 }
 

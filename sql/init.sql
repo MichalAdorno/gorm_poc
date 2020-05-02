@@ -80,7 +80,8 @@ CREATE TABLE "Departments"(
   id INTEGER NOT NULL,
   name VARCHAR(255) NOT NULL,
   "ManagerId" INTEGER,
-  hrDocumentation json,
+  "hrDocumentation" json,
+  "financialDocumentation" json[] DEFAULT ARRAY[]::json[],
   "createdAt" timestamp with time zone,
   "updatedAt" timestamp with time zone
 );

@@ -5,6 +5,7 @@ import (
 	"gorm_poc/connector"
 	"gorm_poc/domain"
 	"gorm_poc/router"
+	"gorm_poc/sql"
 	"log"
 	"net/http"
 	"sync"
@@ -26,6 +27,7 @@ func runServerAsync() {
 }
 
 func main() {
+	sql.Test()
 	wg.Add(1)
 	dbConfig := connector.ReadInDbConfig()
 	connString := dbConfig.GetConnectionString()
@@ -127,29 +129,33 @@ func main() {
 
 	log.Println("Example 3 /FinancialDocumentation: dep1, dep2, dep3/: %v || %v || %v",
 		dep1.FinancialDocumentation, dep2.FinancialDocumentation, dep3.FinancialDocumentation)
+
 	/*
 		EXAMPLE 4:
 		- how to handle associations MANY-TO-MANY
 	*/
-	team1 := domain.Team{
-		Name:       "Equity",
-		Department: &dep3,
-		Regions:    []*domain.Region{&reg1},
-	}
-	team2 := domain.Team{
-		Name:       "Equity",
-		Department: &dep3,
-		Regions:    []*domain.Region{&reg2},
-	}
-	log.Println("Example 4 /reg1.id/: %v", reg1.ID)
-	log.Println("Example 4 /team1.id/: %v", team1.ID)
-	// log.Println("Example 4 /team1.id/: %v", team1.RegionId)
-	log.Println("Example 4 /reg2.id/: %v", reg2.ID)
-	log.Println("Example 4 /team2.id/: %v", team2.ID)
-	// log.Println("Example 4 /team2.id/: %v", team2.RegionId)
-	reg1.Teams = []*domain.Team{&team1}
+	// team1 := domain.Team{
+	// 	Name:       "Equity",
+	// 	Department: &dep3,
+	// 	Regions:    []*domain.Region{&reg1},
+	// }
+	// team2 := domain.Team{
+	// 	Name:       "Equity",
+	// 	Department: &dep3,
+	// 	Regions:    []*domain.Region{&reg2},
+	// }
+	// log.Println("Example 4 /reg1.id/: %v", reg1.ID)
+	// log.Println("Example 4 /team1.id/: %v", team1.ID)
+	// // log.Println("Example 4 /team1.id/: %v", team1.RegionId)
+	// log.Println("Example 4 /reg2.id/: %v", reg2.ID)
+	// log.Println("Example 4 /team2.id/: %v", team2.ID)
+	// // log.Println("Example 4 /team2.id/: %v", team2.RegionId)
+	// reg1.Teams = []*domain.Team{&team1}
 	// reg2.Teams = []*domain.Team{&team2}
-	db.Save(&reg1)
+	// // db.Save(&reg1)
+	// db.Model(&reg1).Association("Teams").Append(&team1)
+
+	// db.Save(&reg1)
 	// db.Save(&team1)
 	// db.Save(&team2)
 	log.Println("**********")
